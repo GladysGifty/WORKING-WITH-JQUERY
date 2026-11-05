@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Car Body Workshop</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+body{font-family:Arial;background:#f1eaff;text-align:center;padding:20px}
+.container{background:white;width:90%;max-width:750px;margin:auto;padding:25px;border-radius:15px;box-shadow:0 0 10px #aaa}
+h1{color:#663399}
+.car{width:90%;max-width:500px;height:250px;object-fit:contain;margin:15px auto;transition:0.3s}
+button{background:#8054b8;color:white;border:none;padding:12px 18px;margin:7px;border-radius:8px;cursor:pointer;font-size:15px}
+button:hover{background:#542b85}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Car Body Workshop</h1>
+<p>Customize your car using the options below.</p>
+<img id="carImage" class="car" src="car.jpg" alt="Car Image">
+<h3>Change Car Body Colour</h3>
+<button id="red">Red</button>
+<button id="blue">Blue</button>
+<button id="green">Green</button>
+<button id="yellow">Yellow</button>
+<h3>Change Glass Tint</h3>
+<button id="dark">Dark Tint</button>
+<button id="light">Light Tint</button>
+<button id="normal">Normal Glass</button>
+<h3>Change Tyre Size</h3>
+<button id="small">Small Tyres</button>
+<button id="large">Large Tyres</button>
+<br><br>
+<button id="reset">Reset Car</button>
+</div>
+<script>
+$(document).ready(function(){
+$("#red").click(function(){
+$("#carImage").css("filter","sepia(1) saturate(5) hue-rotate(0deg)");
+});
+$("#blue").click(function(){
+$("#carImage").css("filter","sepia(1) saturate(5) hue-rotate(180deg)");
+});
+$("#green").click(function(){
+$("#carImage").css("filter","sepia(1) saturate(5) hue-rotate(70deg)");
+});
+$("#yellow").click(function(){
+$("#carImage").css("filter","sepia(1) saturate(5) hue-rotate(35deg)");
+});
+$("#dark").click(function(){
+$("#carImage").css("opacity","0.65");
+});
+$("#light").click(function(){
+$("#carImage").css("opacity","0.85");
+});
+$("#normal").click(function(){
+$("#carImage").css("opacity","1");
+});
+$("#small").click(function(){
+$("#carImage").css("transform","scale(0.85)");
+});
+$("#large").click(function(){
+$("#carImage").css("transform","scale(1.15)");
+});
+$("#reset").click(function(){
+$("#carImage").css({
+"filter":"none",
+"opacity":"1",
+"transform":"scale(1)"
+});
+});
+});
+</script>
+</body>
+</html>

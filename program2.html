@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cake Order Form</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            background-color: #fff0f5;
+            font-family: Arial;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            width: 550px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            background-color: #cc0000;
+            color: white;
+            padding: 10px;
+        }
+
+        .cakes {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cakes img {
+            width: 115px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px 35px 3px;
+            color: #663399;
+            font-size: 13px;
+        }
+
+        input, select {
+            width: 85%;
+            padding: 7px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #0066ff;
+            color: white;
+            padding: 10px 35px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 12px;
+        }
+
+        #bill {
+            border-top: 2px solid lightgreen;
+            margin-top: 15px;
+            padding: 10px;
+            color: green;
+            font-weight: bold;
+        }
+
+        #total {
+            background-color: green;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>CAKE SHOP</h2>
+
+    <div class="cakes">
+        <img src="https://www.chennaitop10.com/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-29-at-10.54.20-820x545.jpeg" alt="Fruit Cake">
+
+        <img src="https://1.bp.blogspot.com/-qsUfhzidNNk/XRoQPRY2K8I/AAAAAAAAi2Y/nVC2eP4ZvKoFP-UoRPS45nYAVA5uZI6eACLcBGAs/s640/Snapseed_4.jpg" alt="Birthday Cake">
+
+        <img src="https://cukierniacendrowscy.pl/wp-content/uploads/2024/09/CENDROWSCY-img2.webp" alt="Chocolate Cake">
+
+        <img src="https://rimage.gnst.jp/rest/img/hz7gmbwy0000/s_0n60.jpg?t=1468978366" alt="Cream Cake">
+    </div>
+
+    <h3 style="color:blue;">Order Cake</h3>
+
+    <label>Cake Flavor (Required)</label>
+    <select id="flavor">
+        <option value="500">Fruit Cake - Rs.500</option>
+        <option value="600">Birthday Cake - Rs.600</option>
+        <option value="700">Chocolate Cake - Rs.700</option>
+        <option value="800">Black Forest Cake - Rs.800</option>
+    </select>
+
+    <label>Cake Color (Required)</label>
+    <input type="color" id="cakeColor" value="#ff69b4">
+
+    <label>Icing Color (Required)</label>
+    <input type="color" id="icingColor" value="#ffffff">
+
+    <label>Message on Cake (Optional)</label>
+    <input type="text" id="message" placeholder="Enter your message">
+
+    <label>No. of Cakes (Required)</label>
+    <input type="number" id="quantity" min="1" value="1">
+
+    <br>
+
+    <button id="order">Place Order</button>
+
+    <div id="bill">
+        <h3>Purchase Order Bill</h3>
+        <p id="details">Your order details will appear here.</p>
+        <div id="total">Total Price: Rs. 0</div>
+    </div>
+
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+    $("#order").click(function() {
+
+        var price = Number($("#flavor").val());
+        var quantity = Number($("#quantity").val());
+        var flavor = $("#flavor option:selected").text();
+        var message = $("#message").val();
+
+        if ($("#quantity").val() === "" ||
+            quantity <= 0 ||
+            !Number.isInteger(quantity)) {
+
+            alert("Please enter a valid quantity!");
+        }
+        else {
+
+            var total = price * quantity;
+
+            $("#details").html(
+                "Cake: " + flavor +
+                "<br>Quantity: " + quantity +
+                "<br>Message: " + (message || "No message")
+            );
+
+            $("#total").html(
+                "Total Price: Rs. " + total
+            );
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

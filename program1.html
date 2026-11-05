@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Calculator</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f1eaff;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 450px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #aaa;
+        }
+
+        h1 {
+            color: #663399;
+        }
+
+        input {
+            width: 85%;
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #8054b8;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #542b85;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #542b85;
+            font-weight: bold;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💰 Budget Calculator</h1>
+
+    <h3>Enter Your Total Amount</h3>
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <h3>Enter Percentage</h3>
+
+    <input type="number" id="rent" placeholder="Room Rent (%)" value="40">
+
+    <input type="number" id="accessories" placeholder="Accessories (%)" value="20">
+
+    <input type="number" id="emergency" placeholder="Emergency (%)" value="20">
+
+    <input type="number" id="savings" placeholder="Savings (%)" value="20">
+
+    <button id="calculate">Calculate Budget</button>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+    $("#calculate").click(function() {
+
+        var amount = Number($("#amount").val());
+
+        var rent = Number($("#rent").val());
+        var accessories = Number($("#accessories").val());
+        var emergency = Number($("#emergency").val());
+        var savings = Number($("#savings").val());
+
+        var total = rent + accessories + emergency + savings;
+
+        if (amount <= 0 || $("#amount").val() == "") {
+            alert("Please enter a valid amount");
+        }
+
+        else if (rent < 0 || accessories < 0 || emergency < 0 || savings < 0) {
+            alert("Percentages cannot be negative");
+        }
+
+        else if (total != 100) {
+            alert("Total percentage must be 100%");
+        }
+
+        else {
+
+            var r = amount * rent / 100;
+            var a = amount * accessories / 100;
+            var e = amount * emergency / 100;
+            var s = amount * savings / 100;
+
+            $("#result").html(
+                "<h3>Budget Details</h3>" +
+                "Room Rent: ₹" + r.toFixed(2) + "<br>" +
+                "Accessories: ₹" + a.toFixed(2) + "<br>" +
+                "Emergency: ₹" + e.toFixed(2) + "<br>" +
+                "Savings: ₹" + s.toFixed(2) + "<br>" +
+                "<hr>Total Amount: ₹" + amount.toFixed(2)
+            );
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
